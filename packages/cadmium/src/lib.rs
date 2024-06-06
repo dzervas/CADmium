@@ -1,3 +1,4 @@
+use log::info;
 use message::{Message, MessageResult};
 // use message::{Message, MessageResult};
 use tsify_next::declare;
@@ -30,6 +31,8 @@ impl Project {
     #[wasm_bindgen(constructor)]
     pub fn new(name: &str) -> Project {
         console_error_panic_hook::set_once();
+        wasm_logger::init(wasm_logger::Config::default());
+        info!("Hello, world!");
 
         Project {
             native: project::Project::new(name),
